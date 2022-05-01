@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
-  let errorMessage;
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const navigate = useNavigate();
+  const [errrorMassage, setErrorMassage] = useState("");
   const handleRegister = (event) => {
     event.preventDefault();
     const name = event.target.floating_name.value;
@@ -14,14 +16,24 @@ const Register = () => {
     const confirmPassword = event.target.repeat_password.value;
 
     if (confirmPassword !== password) {
-      errorMessage = <p> "passwords didn't match"</p>;
+      setErrorMassage("Passwords did not match");
+      console.log("password wrong");
     } else {
       createUserWithEmailAndPassword(email, password);
+      event.target.floating_name.value = "";
+      event.target.floating_email.value = "";
+      event.target.floating_password.value = "";
+      event.target.repeat_password.value = "";
     }
   };
 
   if (error) {
-    errorMessage = <p>{error.message}</p>;
+    setErrorMassage(error.message);
+    console.log("firebase error");
+  }
+
+  if (user) {
+    navigate("/home");
   }
 
   return (
@@ -92,7 +104,7 @@ const Register = () => {
             Confirm password
           </label>
         </div>
-        {errorMessage}
+        <p className="text-red-600 text-center text-lg my-4">{errrorMassage}</p>
 
         <button
           type="submit"
@@ -101,6 +113,12 @@ const Register = () => {
           Register
         </button>
       </form>
+      <p className="text-center my-7">
+        Already Have an Account?{" "}
+        <Link className="text-purple-500" to="/login">
+          Login
+        </Link>
+      </p>
     </div>
   );
 };

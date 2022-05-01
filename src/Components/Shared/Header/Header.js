@@ -7,7 +7,7 @@ const Header = () => {
     { name: "SERVICE", link: "/" },
     { name: "REGISTER", link: "/register" },
     { name: "BLOG'S", link: "/blogs" },
-    { name: "CONTACT", link: "/" },
+    { name: "LOGIN", link: "/login" },
   ];
   let [open, setOpen] = useState(false);
   return (
