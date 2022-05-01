@@ -11,9 +11,11 @@ const Inventories = () => {
   }, []);
   return (
     <div>
-      <h2>Load inventories here : {monitors.length}</h2>
-      <div className="monitors-container container mx-auto grid grid-cols-3">
-        {monitors.map((monitor) => (
+      <h2 className="text-xl text-center font-semibold my-5">
+        Load inventories here : {monitors.length}
+      </h2>
+      <div className="monitors-container container mx-auto grid grid-cols-3 gap-y-7">
+        {monitors.slice(0, 6).map((monitor) => (
           <Inventory key={monitor._id} monitor={monitor}></Inventory>
         ))}
       </div>

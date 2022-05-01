@@ -6,16 +6,18 @@ import Footer from "./Components/Shared/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import Blogs from "./Components/Blogs/Blogs";
 import Inventories from "./Components/Home/Inventories/Inventories";
+import Register from "./Components/Register/Register";
 
 function App() {
   return (
     <div>
       <Header></Header>
-      <Inventories></Inventories>
+
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
     </div>
   );
