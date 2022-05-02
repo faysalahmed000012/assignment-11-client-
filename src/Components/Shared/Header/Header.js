@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CustomLink from "../../CustomLink/CustomLink";
 
 const Header = () => {
   let Links = [
@@ -37,12 +38,12 @@ const Header = () => {
         >
           {Links.map((link) => (
             <li key={link.name} className="md:ml-8 md:my-0 my-7">
-              <Link
+              <CustomLink
                 to={link.link}
                 className="text-gray-800 font-mono hover:text-purple-700 duration-300"
               >
                 {link.name}
-              </Link>
+              </CustomLink>
             </li>
           ))}
           <button

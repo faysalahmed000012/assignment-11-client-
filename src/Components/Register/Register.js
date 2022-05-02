@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import Loading from "../Loading/Loading";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const navigate = useNavigate();
-  const [errrorMassage, setErrorMassage] = useState("");
+
   const handleRegister = (event) => {
     event.preventDefault();
     const name = event.target.floating_name.value;
@@ -15,9 +18,12 @@ const Register = () => {
     const password = event.target.floating_password.value;
     const confirmPassword = event.target.repeat_password.value;
 
-    if (confirmPassword !== password) {
-      setErrorMassage("Passwords did not match");
-      console.log("password wrong");
+    if (password !== confirmPassword) {
+      toast("Passwords did not match");
+      event.target.floating_name.value = "";
+      event.target.floating_email.value = "";
+      event.target.floating_password.value = "";
+      event.target.repeat_password.value = "";
     } else {
       createUserWithEmailAndPassword(email, password);
       event.target.floating_name.value = "";
@@ -26,10 +32,19 @@ const Register = () => {
       event.target.repeat_password.value = "";
     }
   };
+  let errorElement;
 
   if (error) {
-    setErrorMassage(error.message);
-    console.log("firebase error");
+    errorElement = (
+      <div>
+        <p className="text-red-700 text-center font-semibold my-3">
+          Error: {error?.message}
+        </p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <Loading></Loading>;
   }
 
   if (user) {
@@ -104,7 +119,6 @@ const Register = () => {
             Confirm password
           </label>
         </div>
-        <p className="text-red-600 text-center text-lg my-4">{errrorMassage}</p>
 
         <button
           type="submit"
@@ -113,12 +127,14 @@ const Register = () => {
           Register
         </button>
       </form>
+      <p>{errorElement} </p>
       <p className="text-center my-7">
         Already Have an Account?{" "}
         <Link className="text-purple-500" to="/login">
           Login
         </Link>
       </p>
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

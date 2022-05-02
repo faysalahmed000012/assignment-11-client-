@@ -1,4 +1,6 @@
 import { async } from "@firebase/util";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import React, { useRef, useState } from "react";
 import {
   useSendPasswordResetEmail,
@@ -6,6 +8,8 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import SocialLogin from "../SocialLogin/SocialLogin";
+import Loading from "../Loading/Loading";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -14,35 +18,39 @@ const Login = () => {
   const [sendPasswordResetEmail, sending, resetError] =
     useSendPasswordResetEmail(auth);
   const navigate = useNavigate();
-  const [errrorMassage, setErrorMassage] = useState("");
+
   const handleLogin = (event) => {
     event.preventDefault();
-    const name = event.target.floating_name.value;
+
     const email = event.target.floating_email.value;
     const password = event.target.floating_password.value;
-    const confirmPassword = event.target.repeat_password.value;
 
-    if (confirmPassword !== password) {
-      setErrorMassage("Passwords did not match");
-      console.log("password wrong");
-    } else {
-      signInWithEmailAndPassword(email, password);
-      event.target.floating_email.value = "";
-      event.target.floating_password.value = "";
-    }
+    signInWithEmailAndPassword(email, password);
+    event.target.floating_email.value = "";
+    event.target.floating_password.value = "";
   };
   const handleReset = async () => {
     const email = emailRef.current.value;
-    if (email) {
-      await sendPasswordResetEmail(email);
+    if (!email) {
+      toast("please provide an email");
     } else {
-      alert("please provide and email");
+      await sendPasswordResetEmail(emailRef.current.value);
+      toast("Email Sent");
     }
   };
-
+  let errorElement;
   if (error || resetError) {
-    setErrorMassage(error.message);
+    errorElement = (
+      <div>
+        <p className="text-red-700 text-center font-semibold my-3">
+          Error: {error?.message}
+        </p>
+      </div>
+    );
     console.log("firebase error");
+  }
+  if (loading || sending) {
+    return <Loading></Loading>;
   }
   if (user) {
     navigate("/home");
@@ -86,9 +94,7 @@ const Login = () => {
             Password
           </label>
         </div>
-
-        <p className="text-red-600 text-center text-lg my-4">{errrorMassage}</p>
-
+        {errorElement}
         <button
           type="submit"
           className="mx-auto block text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
@@ -104,10 +110,12 @@ const Login = () => {
       </p>
       <p className="text-center my-7">
         Forgot password ?{" "}
-        <Link className="text-purple-500" onClick={handleReset}>
+        <button className="text-purple-500" onClick={handleReset}>
           send Email
-        </Link>
+        </button>
       </p>
+      <ToastContainer />
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

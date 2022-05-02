@@ -8,6 +8,7 @@ import Blogs from "./Components/Blogs/Blogs";
 import Inventories from "./Components/Home/Inventories/Inventories";
 import Register from "./Components/Register/Register";
 import Login from "./Components/Login/Login";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
