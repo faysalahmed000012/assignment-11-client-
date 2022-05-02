@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const AddItem = () => {
   const handleAddItem = (event) => {
@@ -20,7 +21,13 @@ const AddItem = () => {
       picture: picture,
     };
     const url = `http://localhost:5000/inventories`;
-    axios.post(url, item).then((response) => console.log(response));
+    axios.post(url, item).then((response) => toast("Item added to db"));
+    event.target.floating_product.value = "";
+    event.target.floating_name.value = "";
+    event.target.floating_quantity.value = "";
+    event.target.floating_price.value = "";
+    event.target.floating_img.value = "";
+    event.target.message.value = "";
   };
   return (
     <div className="container mx-auto my-auto">
