@@ -1,16 +1,34 @@
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
 import CustomLink from "../../CustomLink/CustomLink";
+import Loading from "../../Loading/Loading";
 
 const Header = () => {
-  let Links = [
-    { name: "HOME", link: "/" },
-    { name: "SERVICE", link: "/" },
-    { name: "REGISTER", link: "/register" },
-    { name: "BLOG'S", link: "/blogs" },
-    { name: "LOGIN", link: "/login" },
-  ];
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+  let Links;
+
+  if (!user) {
+    Links = [
+      { name: "HOME", link: "/" },
+      { name: "SERVICE", link: "/" },
+      { name: "BLOG'S", link: "/blogs" },
+      { name: "LOGIN", link: "/login" },
+    ];
+  } else {
+    Links = [
+      { name: "HOME", link: "/" },
+      { name: "SERVICE", link: "/" },
+      { name: "ADD ITEM", link: "/add" },
+    ];
+  }
   let [open, setOpen] = useState(false);
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="shadow-md w-full ">
       <div className="md:flex items-center justify-between bg-slate-200 py-4 md:px-10 px-7">
@@ -46,12 +64,23 @@ const Header = () => {
               </CustomLink>
             </li>
           ))}
-          <button
-            type="button"
-            className="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 py-2 px-6 md:ml-8"
-          >
-            Register
-          </button>
+          {user ? (
+            <button
+              onClick={() => signOut(auth)}
+              type="button"
+              className="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 py-2 px-6 md:ml-8"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/register")}
+              type="button"
+              className="text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 py-2 px-6 md:ml-8"
+            >
+              Register
+            </button>
+          )}
         </ul>
       </div>
     </div>
