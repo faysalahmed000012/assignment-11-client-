@@ -1,14 +1,12 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import useInventory from "../../../Hooks/useInventory";
 import Inventory from "../Inventory/Inventory";
 
 const Inventories = () => {
-  const [monitors, setMonitors] = useState([]);
-  useEffect(() => {
-    const url = `http://localhost:5000/inventories`;
-    axios.get(url).then((response) => setMonitors(response.data));
-  }, []);
+  const [monitors, setMonitors] = useInventory();
+
   return (
     <div>
       <h2 className="text-xl text-center font-semibold my-5">

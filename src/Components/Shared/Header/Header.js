@@ -22,13 +22,12 @@ const Header = () => {
     Links = [
       { name: "HOME", link: "/" },
       { name: "SERVICE", link: "/" },
-      { name: "ADD ITEM", link: "/add" },
+      { name: "ADD", link: "/add" },
+      { name: "MANAGE", link: "/manage" },
     ];
   }
   let [open, setOpen] = useState(false);
-  if (loading) {
-    return <Loading></Loading>;
-  }
+
   return (
     <div className="shadow-md w-full ">
       <div className="md:flex items-center justify-between bg-slate-200 py-4 md:px-10 px-7">
