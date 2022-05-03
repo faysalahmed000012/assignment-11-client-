@@ -81,10 +81,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-// <div className="flex flex-col items-center justify-center bg-black h-36">
-//   <h3 className="text-lg font-serif text-white">Contact Us</h3>
-//   <p className="text-sm text-white font-thin">
-//     {currentYear} © All Right Reserved to Misbahul Haq
-//   </p>
-// </div>
