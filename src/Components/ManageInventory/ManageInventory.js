@@ -2,19 +2,34 @@ import React from "react";
 import useInventory from "../../Hooks/useInventory";
 import { TrashIcon } from "@heroicons/react/solid";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ManageInventory = () => {
   const [monitors, setMonitors] = useInventory();
   const handleDelete = (id) => {
-    const url = `http://localhost:5000/inventory/${id}`;
-    fetch(url, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "This item has been deleted.", "success");
 
-    const rest = monitors.filter((monitor) => monitor._id !== id);
-    setMonitors(rest);
+        const url = `http://localhost:5000/inventory/${id}`;
+        fetch(url, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+
+        const rest = monitors.filter((monitor) => monitor._id !== id);
+        setMonitors(rest);
+      }
+    });
   };
   return (
     <div className="container mx-auto my-7">

@@ -20,6 +20,7 @@ const AddItem = () => {
       about: about,
       picture: picture,
     };
+
     const url = `http://localhost:5000/inventories`;
     axios.post(url, item).then((response) => toast("Item added to db"));
     event.target.floating_product.value = "";

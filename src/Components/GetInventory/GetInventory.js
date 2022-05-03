@@ -5,16 +5,43 @@ import { Link, useParams } from "react-router-dom";
 const GetInventory = () => {
   const { id } = useParams();
   const [inventory, setInventory] = useState({});
-  const { name, product, about, price, picture } = inventory;
-  let quantity = inventory.quantity;
+  let { name, product, about, price, picture, quantity } = inventory;
+  const url = `http://localhost:5000/inventory/${id}`;
   useEffect(() => {
-    const url = `http://localhost:5000/inventory/${id}`;
     axios.get(url).then((response) => setInventory(response.data));
-  }, [id]);
-  let newQuantity = quantity;
+  }, [id, url]);
   const handleDelivered = () => {
-    newQuantity = quantity - 1;
-    console.log(newQuantity);
+    const newQuantity = quantity - 1;
+    const newInventory = {
+      name: name,
+      product: product,
+      about: about,
+      price: price,
+      picture: picture,
+      quantity: newQuantity,
+    };
+    setInventory(newInventory);
+
+    axios.put(url, newInventory).then((response) => console.log(response));
+  };
+
+  const handleAdd = (event) => {
+    event.preventDefault();
+    const inputValue = event.target.AddedQuantity.value;
+    const addedQuantity = Number(inputValue);
+
+    const newInventory = {
+      name: name,
+      product: product,
+      about: about,
+      price: price,
+      picture: picture,
+      quantity: quantity + addedQuantity,
+    };
+    setInventory(newInventory);
+    axios.put(url, newInventory).then((response) => console.log(response));
+
+    event.target.AddedQuantity.value = "";
   };
 
   return (
@@ -37,7 +64,7 @@ const GetInventory = () => {
               Price: {price}
             </p>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Quantity: {newQuantity}
+              Quantity: {quantity}
             </p>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {about}
@@ -55,10 +82,10 @@ const GetInventory = () => {
         Restock The Items
       </h3>
       <div className="flex items-center justify-center">
-        <form className="block mx-auto my-5">
+        <form onSubmit={handleAdd} className="block mx-auto my-5">
           <input
             type="number"
-            name=""
+            name="AddedQuantity"
             className="g-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-purple-500 focus:border-purple-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
           <button className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-r-lg text-sm  px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
