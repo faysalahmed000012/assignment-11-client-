@@ -13,6 +13,7 @@ import RequireAuth from "./Components/RequireAuth/RequireAuth";
 import GetInventory from "./Components/GetInventory/GetInventory";
 import AddItem from "./Components/AddItem/AddItem";
 import ManageInventory from "./Components/ManageInventory/ManageInventory";
+import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
   return (
@@ -49,7 +50,9 @@ function App() {
         ></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer />
     </div>
   );

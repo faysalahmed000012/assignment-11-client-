@@ -1,0 +1,7 @@
+.svg-back {
+  background-image: url("../../../images/background/blob-scene-haikei.svg");
+  background-repeat: no-repeat;
+  overflow: hidden;
+  height: -300px;
+  width: 600px;
+}
