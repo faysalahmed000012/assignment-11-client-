@@ -23,6 +23,7 @@ const Header = () => {
       { name: "HOME", link: "/" },
       { name: "SERVICE", link: "/" },
       { name: "ADD", link: "/add" },
+      { name: "BLOG'S", link: "/blogs" },
       { name: "MANAGE", link: "/manage" },
     ];
   }
