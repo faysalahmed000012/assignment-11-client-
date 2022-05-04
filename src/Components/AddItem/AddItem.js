@@ -1,8 +1,11 @@
 import axios from "axios";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 
 const AddItem = () => {
+  const [user] = useAuthState(auth);
   const handleAddItem = (event) => {
     event.preventDefault();
     const product = event.target.floating_product.value;
@@ -10,6 +13,7 @@ const AddItem = () => {
     const quantity = event.target.floating_quantity.value;
     const price = event.target.floating_price.value;
     const picture = event.target.floating_img.value;
+    const email = event.target.floating_email.value;
     const about = event.target.message.value;
 
     const item = {
@@ -19,9 +23,10 @@ const AddItem = () => {
       price: price,
       about: about,
       picture: picture,
+      email: email,
     };
 
-    const url = `http://localhost:5000/inventories`;
+    const url = `http://localhost:5000/emailInventories`;
     axios.post(url, item).then((response) => toast("Item added to db"));
     event.target.floating_product.value = "";
     event.target.floating_name.value = "";
@@ -36,6 +41,22 @@ const AddItem = () => {
         <span className="text-purple-500">Add</span> Item !!!
       </h3>
       <form className="mx-auto w-3/5" onSubmit={handleAddItem}>
+        <div className="relative z-0 w-full mb-6 group">
+          <input
+            type="text"
+            name="floating_email"
+            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+            placeholder=" "
+            value={user.email}
+            disabled
+          />
+          <label
+            htmlFor="floating_email"
+            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >
+            Your Email
+          </label>
+        </div>
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"

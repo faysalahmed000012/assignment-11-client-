@@ -3,6 +3,7 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 import Loading from "../Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
@@ -10,6 +11,7 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const navigate = useNavigate();
+  const [token] = useToken(user);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -47,7 +49,7 @@ const Register = () => {
     return <Loading></Loading>;
   }
 
-  if (user) {
+  if (token) {
     navigate("/home");
   }
 

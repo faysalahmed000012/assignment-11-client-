@@ -14,17 +14,18 @@ const Header = () => {
   if (!user) {
     Links = [
       { name: "HOME", link: "/" },
-      { name: "SERVICE", link: "/home#services" },
+      { name: "INVENTORY", link: "home#services" },
       { name: "BLOG'S", link: "/blogs" },
       { name: "LOGIN", link: "/login" },
     ];
   } else {
     Links = [
       { name: "HOME", link: "/" },
-      { name: "SERVICE", link: "/home#services" },
+      { name: "INVENTORY", link: "home#services" },
       { name: "ADD", link: "/add" },
       { name: "BLOG'S", link: "/blogs" },
       { name: "MANAGE", link: "/manage" },
+      { name: "MYITEM", link: "/myitem" },
     ];
   }
   let [open, setOpen] = useState(false);

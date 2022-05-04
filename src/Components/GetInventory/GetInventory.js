@@ -46,6 +46,9 @@ const GetInventory = () => {
 
   return (
     <>
+      <h2 className="text-center text-purple-600 font-semibold my-5 font-serif text-2xl">
+        Update The Item
+      </h2>
       <div className="flex items-center justify-center">
         <div className="mt-24 w-4/5 flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           <img
@@ -79,7 +82,7 @@ const GetInventory = () => {
         </div>
       </div>
       <h3 className="text-center text-2xl font-semibold text-gray-500 mt-10">
-        Restock The Items
+        Restock The Item
       </h3>
       <div className="flex items-center justify-center">
         <form onSubmit={handleAdd} className="block mx-auto my-5">

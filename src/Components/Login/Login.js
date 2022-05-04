@@ -10,6 +10,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import Loading from "../Loading/Loading";
+import axios from "axios";
+import useToken from "../../Hooks/useToken";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -20,14 +22,15 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
+  const [token] = useToken(user);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     const email = event.target.floating_email.value;
     const password = event.target.floating_password.value;
 
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
     event.target.floating_email.value = "";
     event.target.floating_password.value = "";
   };
@@ -54,7 +57,7 @@ const Login = () => {
   if (loading || sending) {
     return <Loading></Loading>;
   }
-  if (user) {
+  if (token) {
     navigate(from, { replace: true });
   }
 
