@@ -1,13 +1,23 @@
 import { ArrowRightIcon } from "@heroicons/react/solid";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Inventory = ({ monitor }) => {
   const { _id, name, price, picture, quantity, product, about } = monitor;
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
     <>
       <div className="mx-auto">
-        <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-bottom"
+          className="max-w-sm  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+        >
           <div
             style={{ height: "255px", width: "382px" }}
             className="rounded-t-lg "

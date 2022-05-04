@@ -12,7 +12,7 @@ const Inventories = () => {
   return (
     <div className="container mx-auto">
       <h2 className="text-xl text-center font-semibold my-5 ">
-        Load inventories here : {monitors.length}
+        Inventories Here
       </h2>
       <div className="monitors-container container mx-auto grid lg:grid-cols-3 gap-y-7">
         {monitors.slice(0, 6).map((monitor) => (
