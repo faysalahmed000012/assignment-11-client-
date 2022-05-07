@@ -17,7 +17,7 @@ const MyItem = () => {
   useEffect(() => {
     const email = user?.email;
     const getMonitors = async () => {
-      const url = `http://localhost:5000/emailInventories?email=${email}`;
+      const url = `https://boiling-springs-23607.herokuapp.com/inventoriess?email=${email}`;
       try {
         const { data } = await privateAxios.get(url);
         console.log(data);
@@ -46,7 +46,7 @@ const MyItem = () => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "This item has been deleted.", "success");
 
-        const url = `http://localhost:5000/emailInventory/${id}`;
+        const url = `https://boiling-springs-23607.herokuapp.com/inventory/${id}`;
         fetch(url, {
           method: "DELETE",
         })

@@ -14,7 +14,7 @@ const Charts = () => {
   const [chart, setChart] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/chart")
+      .get("https://boiling-springs-23607.herokuapp.com/chart")
       .then((response) => setChart(response.data));
   }, []);
 

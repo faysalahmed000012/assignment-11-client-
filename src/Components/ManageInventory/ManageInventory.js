@@ -19,7 +19,7 @@ const ManageInventory = () => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "This item has been deleted.", "success");
 
-        const url = `http://localhost:5000/inventory/${id}`;
+        const url = `https://boiling-springs-23607.herokuapp.com/inventory/${id}`;
         fetch(url, {
           method: "DELETE",
         })

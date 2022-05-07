@@ -2,7 +2,7 @@ import React from "react";
 
 const Blogs = () => {
   return (
-    <div className="h-screen flex flex-col items-center mt-5">
+    <div className=" flex flex-col items-center mt-5">
       <h3 className="text-center text-2xl text-purple-600 font-serif font-bold my-4">
         Questions and Answers
       </h3>

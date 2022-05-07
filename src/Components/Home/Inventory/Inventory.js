@@ -14,6 +14,7 @@ const Inventory = ({ monitor }) => {
     <>
       <div className="mx-auto">
         <div
+          style={{ height: "601px", width: "384px" }}
           data-aos="fade-up"
           data-aos-anchor-placement="top-bottom"
           className="max-w-sm  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"

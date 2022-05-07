@@ -19,11 +19,11 @@ const Banner = () => {
       <div className="flex-1 order-2 lg:order-1">
         <h3 className="lg:text-6xl text-3xl  font-bold font-serif mb-3">
           {" "}
-          Best Deal at <br />{" "}
-          <span className="text-purple-600 mt-2">Monitor Mania</span>.
+          Find Monitor at <br />{" "}
+          <span className="text-purple-600 mt-2">Monitor House</span>.
         </h3>
         <p className="lg:text-xl text-md">
-          Monitor mania is a monitor warehouse management service. In this
+          Monitor House is a monitor warehouse management service. In this
           warehouse full of monitors from verius brand you can took monitor for
           sale.
         </p>

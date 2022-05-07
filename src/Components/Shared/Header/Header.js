@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import CustomLink from "../../CustomLink/CustomLink";
 import Loading from "../../Loading/Loading";
+import logo from "../../../images/monitor.png";
 
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -37,10 +38,10 @@ const Header = () => {
           className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
       text-gray-800"
         >
-          <span className="text-3xl text-indigo-600 mr-1 pt-2">
-            <ion-icon name="logo-ionic"></ion-icon>
+          <span className="text-3xl text-indigo-600 mr-1 pt-2 font-thin">
+            <img width={30} src={logo} alt="" />
           </span>
-          Designer
+          MONITOR HOUSE
         </div>
 
         <div

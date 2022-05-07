@@ -26,7 +26,7 @@ const AddItem = () => {
       email: email,
     };
 
-    const url = `http://localhost:5000/emailInventories`;
+    const url = `https://boiling-springs-23607.herokuapp.com/inventories`;
     axios.post(url, item).then((response) => toast("Item added to db"));
     event.target.floating_product.value = "";
     event.target.floating_name.value = "";
@@ -109,6 +109,7 @@ const AddItem = () => {
             type="number"
             name="floating_quantity"
             id="floating_quantity"
+            min="1"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
             placeholder=" "
             required
@@ -125,6 +126,7 @@ const AddItem = () => {
             type="number"
             name="floating_price"
             id="floating_price"
+            min="1"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
             placeholder=" "
             required
@@ -148,6 +150,7 @@ const AddItem = () => {
           rows="4"
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Add Description"
+          required
         ></textarea>
 
         <button

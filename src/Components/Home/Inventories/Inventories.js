@@ -14,7 +14,7 @@ const Inventories = () => {
       <h2 className="text-xl text-center text-purple-600 font-semibold my-5 ">
         Inventories Here
       </h2>
-      <div className="monitors-container container mx-auto grid lg:grid-cols-3 gap-y-7">
+      <div className="container mx-auto grid lg:grid-cols-3 gap-y-7">
         {monitors.slice(0, 6).map((monitor) => (
           <Inventory key={monitor._id} monitor={monitor}></Inventory>
         ))}

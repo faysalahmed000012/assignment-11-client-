@@ -11,10 +11,10 @@ const Bar = () => {
         <p className="text-md">Storage Fill</p>
       </div>
       <div className="w-64 h-64 bg-gray-100 flex flex-col items-center justify-center">
-        <CircularProgress size="100px" color="purple" value={85}>
-          <CircularProgressLabel>85%</CircularProgressLabel>
+        <CircularProgress size="100px" color="purple" value={15}>
+          <CircularProgressLabel>15%</CircularProgressLabel>
         </CircularProgress>
-        <p className="text-md">Storage Fill</p>
+        <p className="text-md">Going to empty</p>
       </div>
     </div>
   );

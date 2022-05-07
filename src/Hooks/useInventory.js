@@ -4,7 +4,7 @@ import axios from "axios";
 const useInventory = () => {
   const [monitors, setMonitors] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:5000/inventories`;
+    const url = `https://boiling-springs-23607.herokuapp.com/inventories`;
     axios.get(url).then((response) => setMonitors(response.data));
   }, []);
   return [monitors, setMonitors];

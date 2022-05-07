@@ -6,7 +6,7 @@ const GetInventory = () => {
   const { id } = useParams();
   const [inventory, setInventory] = useState({});
   let { name, product, about, price, picture, quantity } = inventory;
-  const url = `http://localhost:5000/inventory/${id}`;
+  const url = `https://boiling-springs-23607.herokuapp.com/inventory/${id}`;
   useEffect(() => {
     axios.get(url).then((response) => setInventory(response.data));
   }, [id, url]);
@@ -72,12 +72,18 @@ const GetInventory = () => {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {about}
             </p>
-            <button
-              onClick={handleDelivered}
-              className=" block my-4 w-24 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
-            >
-              Delivered
-            </button>
+            {quantity <= 0 ? (
+              <button className=" block my-4 w-24 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                Sold Out
+              </button>
+            ) : (
+              <button
+                onClick={handleDelivered}
+                className=" block my-4 w-24 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+              >
+                Delivered
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -89,6 +95,7 @@ const GetInventory = () => {
           <input
             type="number"
             name="AddedQuantity"
+            min="1"
             className="g-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-purple-500 focus:border-purple-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
           <button className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-r-lg text-sm  px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
