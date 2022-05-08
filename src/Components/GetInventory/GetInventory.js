@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -103,6 +104,12 @@ const GetInventory = () => {
           </button>
         </form>
       </div>
+      <Link
+        className="flex items-center justify-end ml-auto my-5 font-medium  text-purple-600  "
+        to="/manage"
+      >
+        Manage Items <ArrowRightIcon className="w-4 ml-2"></ArrowRightIcon>
+      </Link>
     </>
   );
 };
