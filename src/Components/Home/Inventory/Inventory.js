@@ -47,6 +47,7 @@ const Inventory = ({ monitor }) => {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {about}
             </p>
+
             <Link
               to={`/inventory/${_id}`}
               className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-blue-800"

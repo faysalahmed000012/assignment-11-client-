@@ -26,7 +26,7 @@ const AddItem = () => {
       email: email,
     };
 
-    const url = `https://boiling-springs-23607.herokuapp.com/inventories`;
+    const url = `https://boiling-springs-23607.herokuapp.com/usersItem`;
     axios.post(url, item).then((response) => toast("Item added to db"));
     event.target.floating_product.value = "";
     event.target.floating_name.value = "";

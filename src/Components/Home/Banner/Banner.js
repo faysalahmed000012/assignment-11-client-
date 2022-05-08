@@ -23,9 +23,9 @@ const Banner = () => {
           <span className="text-purple-600 mt-2">Monitor House</span>.
         </h3>
         <p className="lg:text-xl text-md">
-          Monitor House is a monitor warehouse management service. In this
-          warehouse full of monitors from verius brand you can took monitor for
-          sale.
+          Monitor House is a monitor warehouse management service website. In
+          this warehouse full of monitors from various brand . User can add,
+          delete and update items by their own.
         </p>
       </div>
       <div

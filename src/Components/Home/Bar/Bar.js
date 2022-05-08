@@ -12,9 +12,9 @@ const Bar = () => {
       </div>
       <div className="w-64 h-64 bg-gray-100 flex flex-col items-center justify-center">
         <CircularProgress size="100px" color="purple" value={15}>
-          <CircularProgressLabel>15%</CircularProgressLabel>
+          <CircularProgressLabel>8%</CircularProgressLabel>
         </CircularProgress>
-        <p className="text-md">Going to empty</p>
+        <p className="text-md">Other Necessary Items</p>
       </div>
     </div>
   );
